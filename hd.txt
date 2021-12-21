@@ -1,0 +1,8 @@
+sau khi gen file sav
+django-admin startproject DeployModel => Rename folder DeployModel-Project
+
+Bật VSCODE => chạy code gõ python manage.py runserver
+
+
+Xử lý file Excel
+cài đặt trc "pip install django-import-export"
