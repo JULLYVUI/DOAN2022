@@ -19,9 +19,9 @@ from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index),
+    path('',views.home),
     path('upload/',views.upload,name='upload'),
     path('result1/',views.result1,name='result1'),
-    path('result/',views.simple_upload,name='simple_upload'),
+    path('result/',views.simple_upload,name='result'),
 
 ]

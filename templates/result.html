@@ -5,35 +5,37 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>Document</title>
 </head>
 
 <body>
   {% if something %}
-  <h3>The Prediction of the RF is: {{predict}}</h3>
 
-  <table class="table table-dark table-striped">
+  <table class="table table-light table-hover">
 
     <thead>
 
       <tr>
+        <th>Date</th>
+        <th>Rainfall_w7</th>
 
-        <th>R&D Spend</th>
+        <th>Rainfall_w5</th>
 
-        <th>Administration</th>
+        <th>Rainfall_w3</th>
 
-        <th>Marketing Spend</th>
+        <th>Hnk_t2</th>
 
-        <th>State</th>
+        <th>Hnk_t1</th>
+        <th>Hnk_t</th>
 
-        <th>Profit</th>
-        <th>R&D Spend</th>
+        <th>Htk_t2</th>
 
-        <th>Administration</th>
+        <th>Htk_t1</th>
 
-        <th>Marketing Spend</th>
-
-        <th>State</th>
+        <th>Htk_t</th>
+        <th>Prediction ThakLek</th>
 
       </tr>
 
@@ -41,27 +43,56 @@
 
     <tbody>
 
-      <!-- jinja2 Technique -->
-
-      {% if d %}
-
-      {% for i in d %}
-
+      <!-- {% if d %} -->
+      {% for i, j in pr %}
       <tr>
-        {{i}}</br>
+        <td>{{i.Date}}</td>
+        <td>{{i.Rainfall_w7}}</td>
 
+        <td>{{i.Rainfall_w5}}</td>
+
+        <td>{{i.Rainfall_w3}}</td>
+
+        <td>{{i.Hnk_t2}}</td>
+
+        <td>{{i.Hnk_t1}}</td>
+        <td>{{i.Hnk_t}}</td>
+        <td>{{i.Htk_t2}}</td>
+        <td>{{i.Htk_t1}}</td>
+        <td>{{i.Htk_t}}</td>
+        <td> {{ j }} </td>
       </tr>
-
       {% endfor %}
 
-      {% endif %}
+      <!-- {% for i in d %}
+      <tr>
+
+        <td>{{i.Rainfall_w7}}</td>
+
+        <td>{{i.Rainfall_w5}}</td>
+
+        <td>{{i.Rainfall_w3}}</td>
+
+        <td>{{i.Hnk_t2}}</td>
+
+        <td>{{i.Hnk_t1}}</td>
+        <td>{{i.Hnk_t}}</td>
+        <td>{{i.Htk_t2}}</td>
+        <td>{{i.Htk_t1}}</td>
+        <td>{{i.Htk_t}}</td>
+
+      </tr>
+      {% endfor %} -->
+
+
+      <!-- {% endif %} -->
+
 
     </tbody>
 
   </table>
   {% else %}
-  <!-- This is result is {{ans}} -->
-  <a href="{% url 'home' %}">Click go to home</a>
+  <a href="/">Click go to home</a>
   <a href="{% url 'upload' %}">Click go to choose file</a>
   {% endif %}
 </body>

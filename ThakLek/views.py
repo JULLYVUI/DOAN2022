@@ -6,9 +6,22 @@ import joblib
 import pandas as pd
 from pandas import concat
 from pandas import DataFrame
+import numpy as np
 import json 
+from json import JSONEncoder
 
-def index(request):
+class NumpyArrayEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return super(NumpyArrayEncoder, self).default(obj)
+
+def home(request):
     return  render(request,"home.html")
 
 def result1(request):
@@ -26,6 +39,18 @@ def result1(request):
     lis.append(request.GET['htk'])
     sumation=cls.predict([lis])
     return render(request,"result1.html",{'something':True,'sum':sumation,'lis':lis})
+
+def result(request):
+    if request.method =="POST":
+        file= request.FILES["myFile"]
+        csv=pd.read_csv(file)
+        print(csv.head())
+        arr=csv["sum"]
+        sumation=sum(arr)
+        return render(request,"result.html",{'something':True,'sum':sumation})
+    else:
+        return render(request,"result.html")
+
 
 # convert series to supervised learning
 
@@ -67,15 +92,14 @@ def simple_upload(request):
     if  request.method == "POST":
         file= request.FILES["myFile"]
         # dataset=Dataset()usecols=[1,2,3,4,5,6,7,8,9]
-        imported_data = pd.read_excel(file,usecols=[1,2,3,4,5,6,7,8,9],engine='openpyxl')     
+        imported_data = pd.read_excel(file,usecols=[1,2,3,4,5,6,7,8,9],engine='openpyxl')  
+        data_excel=  pd.read_excel(file,engine='openpyxl')  
         values = imported_data.values
         # print(values)
         # transform the time series data into supervised learning9,10,11,12,13, 14, 15, 16, 17
         data1 = series_to_supervised(values,1,1)
         data1.drop(data1.columns[[9,10,11,12,13, 14, 15, 16,17]], axis=1, inplace=True)
-        json_records = imported_data.reset_index().to_json(orient ='records') 
-        data2 = [] 
-        # context = {'d': data2} 
+        # context = {'d': data_input} 
         if not file.name.endswith("xlsx"):
             messages.info(request,'wrong format')
             return  render(request,"result.html")
@@ -83,8 +107,17 @@ def simple_upload(request):
         x1 = [x for x in data1]
         cls=joblib.load('finalized_model.sav')
         predict=cls.predict(x1)
-        data2 = json.loads(json_records) 
-        return render(request,"result.html",{'something':True,'predict':predict,'d':data2})
+        encodedNumpyData = json.dumps(predict, cls=NumpyArrayEncoder) 
+        data_predictions = json.loads(encodedNumpyData)
+        # print(type(data_predictions))
+        # print(data_predictions)
+        json_records = data_excel.reset_index().to_json(orient ='records') 
+        data_input = [] 
+        data_input = json.loads(json_records) 
+        # print(type(data_input))
+        mylist=zip(data_input,data_predictions)
+        print(mylist)
+        return render(request,"result.html",{'something':True,'predict':data_predictions,'d':data_input,'pr':mylist})
     else:
         return render(request,"result.html")
 

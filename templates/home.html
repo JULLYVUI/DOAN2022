@@ -1,22 +1,65 @@
 {% extends "base.html" %}
-
-{% comment %} {% bock title %}Hello{% endblock %} {% endcomment %}
 {% block content %}
-
-<form action="{% url 'result1' %}" enctype="multipart/form">
-
+<h4 class="text-center">DỰ ĐOÁN MỰC NƯỚC TẠI TRẠM THAKLEK TRÊN SÔNG MEKONG DÙNG RANDOM FOREST</h4>
+<form class="needs-validation" action="{% url 'result1' %}" enctype="multipart/form-data">
     {% csrf_token %}
 
-    Rainfall_w7 <input type="text" required name="w7"></br>
-    Rainfall_w5 <input type="text" required name="w5"></br>
-    Rainfall_w3 <input type="text" required name="w3"></br>
-    Hnk(t-2) <input type="text" required name="hnk2"></br>
-    Hnk(t-1) <input type="text" required name="hnk1"></br>
-    Hnk(t) <input type="text" required name="hnk"></br>
-    Htk(t-2) <input type="text" required name="htk2"></br>
-    Htk(t-1) <input type="text" required name="htk1"></br>
-    Htk(t) <input type="text" required name="htk"></br>
+    <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Rainfall_w7</label>
+        <input type="number" class="form-control" id="formGroupExampleInput" required name="w7"
+            placeholder="Example input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Rainfall_w5</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="w5" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Rainfall_w3</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="w3" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Hnk(t-2)</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk2" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Hnk(t-1)</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk1" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Hnk(t)</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Htk(t-2)</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk2" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Htk(t-1)</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk1" placeholder="Another input placeholder">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Htk(t)</label>
+        <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk" placeholder="Another input placeholder">
+    </div>
+    <button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Prediction</button>
 
-    <input type="submit" value="submit">
 </form>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  
 {% endblock %}
