@@ -2,28 +2,68 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <!-- <h1>The Result are here</h1>
-    <h3>The data you entered is: {{lis}}</h3>
-    <h3>The Prediction of the RF is {{ans}}</h3>
-    <pre>
-        Type of 
-        --w7: w7
-        
-    </pre> -->
-    {% if something %}
-    <h3>The data you entered is: {{predict}}</h3>
-    {% else %}
-    <!-- This is result is {{ans}} -->
-    <a href="{% url 'home' %}">Click go to home</a>
-    <a href="{% url 'upload' %}">Click go to choose file</a>
-    {% endif %}
+  {% if something %}
+  <h3>The Prediction of the RF is: {{predict}}</h3>
+
+  <table class="table table-dark table-striped">
+
+    <thead>
+
+      <tr>
+
+        <th>R&D Spend</th>
+
+        <th>Administration</th>
+
+        <th>Marketing Spend</th>
+
+        <th>State</th>
+
+        <th>Profit</th>
+        <th>R&D Spend</th>
+
+        <th>Administration</th>
+
+        <th>Marketing Spend</th>
+
+        <th>State</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <!-- jinja2 Technique -->
+
+      {% if d %}
+
+      {% for i in d %}
+
+      <tr>
+        {{i}}</br>
+
+      </tr>
+
+      {% endfor %}
+
+      {% endif %}
+
+    </tbody>
+
+  </table>
+  {% else %}
+  <!-- This is result is {{ans}} -->
+  <a href="{% url 'home' %}">Click go to home</a>
+  <a href="{% url 'upload' %}">Click go to choose file</a>
+  {% endif %}
 </body>
 
 </html>
