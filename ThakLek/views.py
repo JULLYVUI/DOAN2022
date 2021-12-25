@@ -40,16 +40,16 @@ def result1(request):
     sumation=cls.predict([lis])
     return render(request,"result1.html",{'something':True,'sum':sumation,'lis':lis})
 
-def result(request):
-    if request.method =="POST":
-        file= request.FILES["myFile"]
-        csv=pd.read_csv(file)
-        print(csv.head())
-        arr=csv["sum"]
-        sumation=sum(arr)
-        return render(request,"result.html",{'something':True,'sum':sumation})
-    else:
-        return render(request,"result.html")
+# def result(request):
+#     if request.method =="POST":
+#         file= request.FILES["myFile"]
+#         csv=pd.read_csv(file)
+#         print(csv.head())
+#         arr=csv["sum"]
+#         sumation=sum(arr)
+#         return render(request,"result.html",{'something':True,'sum':sumation})
+#     else:
+#         return render(request,"result.html")
 
 
 # convert series to supervised learning
@@ -106,7 +106,7 @@ def simple_upload(request):
         data1 = data1.values
         x1 = [x for x in data1]
         cls=joblib.load('finalized_model.sav')
-        predict=cls.predict(x1)
+        predict=cls.predict(x1).round(decimals=2)
         encodedNumpyData = json.dumps(predict, cls=NumpyArrayEncoder) 
         data_predictions = json.loads(encodedNumpyData)
         # print(type(data_predictions))
