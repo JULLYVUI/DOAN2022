@@ -40,20 +40,7 @@ def result1(request):
     sumation=cls.predict([lis])
     return render(request,"result1.html",{'something':True,'sum':sumation,'lis':lis})
 
-# def result(request):
-#     if request.method =="POST":
-#         file= request.FILES["myFile"]
-#         csv=pd.read_csv(file)
-#         print(csv.head())
-#         arr=csv["sum"]
-#         sumation=sum(arr)
-#         return render(request,"result.html",{'something':True,'sum':sumation})
-#     else:
-#         return render(request,"result.html")
-
-
 # convert series to supervised learning
-
 def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
 	"""
 	Frame a time series as a supervised learning dataset.
@@ -99,7 +86,6 @@ def simple_upload(request):
         # transform the time series data into supervised learning9,10,11,12,13, 14, 15, 16, 17
         data1 = series_to_supervised(values,1,1)
         data1.drop(data1.columns[[9,10,11,12,13, 14, 15, 16,17]], axis=1, inplace=True)
-        # context = {'d': data_input} 
         if not file.name.endswith("xlsx"):
             messages.info(request,'wrong format')
             return  render(request,"result.html")
