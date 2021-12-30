@@ -62,7 +62,7 @@ def random_forest_forecast(train, testX):
     # split into input and output columns
     trainX, trainy = train[:, :-1], train[:, -1]
     # fit model
-    model = RandomForestRegressor(n_estimators=100, max_features=3)
+    model = RandomForestRegressor(n_estimators=1000, max_features=3)
 #     random_state=0, n_estimators=200, max_depth=None, max_features=1, min_samples_leaf=1, min_samples_split=2, bootstrap=False
     model.fit(trainX, trainy)
     filename ='finalized_model.sav'
