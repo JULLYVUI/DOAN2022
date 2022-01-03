@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ThakLek',
-    'import_export',
-    
+    'import_export',  
 ]
 
 MIDDLEWARE = [

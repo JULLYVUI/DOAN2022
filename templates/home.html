@@ -1,47 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
 <h4 class="text-center">DỰ ĐOÁN MỰC NƯỚC TẠI TRẠM THAKLEK TRÊN SÔNG MEKONG DÙNG RANDOM FOREST</h4>
-<form class="needs-validation" action="{% url 'result1' %}" enctype="multipart/form-data">
-    {% csrf_token %}
+<div class="row">
+    <div class="col-8 offset-2">
+        <form class="needs-validation" action="{% url 'result1' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Rainfall_w7</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" required name="w7"
+                    placeholder="Lượng mưa trung bình trên lưu vực giữa Nông Khai và ThahLek 7 ngày gần nhất">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Rainfall_w5</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="w5"
+                    placeholder="Lượng mưa trung bình trên lưu vực giữa Nông Khai và ThahLek 5 ngày gần nhất">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Rainfall_w3</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="w3"
+                    placeholder="Lượng mưa trung bình trên lưu vực giữa Nông Khai và ThahLek 3 ngày gần nhất">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Hnk(t-2)</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk2"
+                    placeholder="Mực nước đo 2 ngày trước tại Nông Khai">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Hnk(t-1)</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk1"
+                    placeholder="Mực nước đo 1 ngày trước tại Nông Khai">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Hnk(t)</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk"
+                    placeholder="Mực nước đo ngày hiện tại Nông Khai">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Htk(t-2)</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk2"
+                    placeholder="Mực nước đo 2 ngày trước tại ThahLek">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Htk(t-1)</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk1"
+                    placeholder="Mực nước đo 1 ngày trước tại ThahLek">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Htk(t)</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk"
+                    placeholder="Mực nước đo ngày hiện tại ThahLek">
+            </div>
+            <button type="submit" class="btn btn-primary ">Prediction</button>
 
-    <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label">Rainfall_w7</label>
-        <input type="number" class="form-control" id="formGroupExampleInput" required name="w7"
-            placeholder="Example input placeholder">
+        </form>
     </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Rainfall_w5</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="w5" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Rainfall_w3</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="w3" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Hnk(t-2)</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk2" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Hnk(t-1)</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk1" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Hnk(t)</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="hnk" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Htk(t-2)</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk2" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Htk(t-1)</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk1" placeholder="Another input placeholder">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Htk(t)</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" required name="htk" placeholder="Another input placeholder">
-    </div>
-    <button type="submit" class="btn btn-primary"  >Prediction</button>
+</div>
 
-</form>
+
 {% endblock %}
