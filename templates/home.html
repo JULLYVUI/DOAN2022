@@ -3,7 +3,7 @@
 <h4 class="text-center">DỰ ĐOÁN MỰC NƯỚC TẠI TRẠM THAKLEK TRÊN SÔNG MEKONG DÙNG RANDOM FOREST</h4>
 <div class="row">
     <div class="col-8 offset-2">
-        <form class="needs-validation" action="{% url 'result1' %}" enctype="multipart/form-data">
+        <form class="needs-validation" novalidate action="{% url 'result1' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Rainfall_w7</label>
